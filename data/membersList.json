@@ -1,0 +1,679 @@
+[ {
+  "nome" : "SKULL",
+  "tag" : "#YGGVQ9R2",
+  "telefone" : "+55 21 98656-6485",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "SKULLRAIDS001",
+  "tag" : "#QCYUU9QJ2",
+  "telefone" : "",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS002",
+  "tag" : "#22RYUCVL8",
+  "telefone" : "",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "NOVO_JOGADOR",
+  "tag" : "#TAGEXEMPLO",
+  "telefone" : "+55 11 99999-9999",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "NOVO_JOGADOR",
+  "tag" : "#TAGEXEMPLO1",
+  "telefone" : "+55 11 99999-9999",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "MALVO",
+  "tag" : "#QC282QRJV",
+  "telefone" : "+55 84 8827-4675",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "SIRMACEDO",
+  "tag" : "#QV8J8YCG",
+  "telefone" : "+55 81 9877-0471",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "FELIPEEDIN",
+  "tag" : "#9R8GPU2U2",
+  "telefone" : "+55 41 9884-0614",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "YAHOLHA",
+  "tag" : "#Q0292C2Q8",
+  "telefone" : "",
+  "principal" : false,
+  "contaPrincipal" : "#QV8J8YCG"
+}, {
+  "nome" : "CLEAL",
+  "tag" : "#202YPGULJ",
+  "telefone" : "+55 42 8826-3645",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "HAUSSER",
+  "tag" : "#QV0LYGG8Q",
+  "telefone" : "55 13 99771-9774",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "AQUILES",
+  "tag" : "#YJJCRYGUU",
+  "telefone" : "+55 11 99108-6620",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "AQUILES2",
+  "tag" : "#YQUQUG2G9",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YJJCRYGUU"
+}, {
+  "nome" : "MARCIO",
+  "tag" : "#8GGGR8V2L",
+  "telefone" : "+55 61 9596-2364",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "TAKEO",
+  "tag" : "#G228JUG98",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#8GGGR8V2L"
+}, {
+  "nome" : "TAKUMA",
+  "tag" : "#90G8CRPY0",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#8GGGR8V2L"
+}, {
+  "nome" : "REILUCAS",
+  "tag" : "#902C0L00Q",
+  "telefone" : "+55 65 9362-0403",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "MASCAPA",
+  "tag" : "#QUVLJJY29",
+  "telefone" : "+55 31 9159-6322",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "SIRMACEDO02",
+  "tag" : "#YV2R8PRCC",
+  "telefone" : "tipoConta14",
+  "principal" : false,
+  "contaPrincipal" : "#QV8J8YCG"
+}, {
+  "nome" : "SIRLEEN",
+  "tag" : "#2QP9J20J2",
+  "telefone" : "+55 42 9996-4906",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "CARDOSOMDM",
+  "tag" : "#LQ80PRYCL",
+  "telefone" : "+55 33 9966-7613",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "EDYARLEANDRADE",
+  "tag" : "#2YQ98V8PJ",
+  "telefone" : "+55 98 8737-7164",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "IANSAN",
+  "tag" : "#YVUQYC92R",
+  "telefone" : "+55 11 95881-9013",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "SIRMACEDO03",
+  "tag" : "#YJCQQ8822",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#QV8J8YCG"
+}, {
+  "nome" : "DIAMBA",
+  "tag" : "#LC9VJYVGV",
+  "telefone" : "tipoConta20",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "LUKAS",
+  "tag" : "#9Y2RLUYUJ",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#8GGGR8V2L"
+}, {
+  "nome" : "SIRMACEDO04",
+  "tag" : "#YV20VUCUU",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#QV8J8YCG"
+}, {
+  "nome" : "SIRMACEDO05",
+  "tag" : "#Q08PGLJC8",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#QV8J8YCG"
+}, {
+  "nome" : "ULTR4VIOLENCE",
+  "tag" : "#8QJYR02GU",
+  "telefone" : "tipoConta23",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "MALVOII",
+  "tag" : "#2JJ8YUUVU",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#QC282QRJV"
+}, {
+  "nome" : "LENNYSONBR",
+  "tag" : "#9CP98LGQP",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#202YPGULJ"
+}, {
+  "nome" : "YANZADA7",
+  "tag" : "#Y9VRPLCCV",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#QGG8V0YL"
+}, {
+  "nome" : "LEO",
+  "tag" : "#QU02Q8VJU",
+  "telefone" : "+55 22 99833-0588",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "LEONARDOLANA",
+  "tag" : "#QPQVG222G",
+  "telefone" : "+33 7 65 17 95 98",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "AK08003",
+  "tag" : "#QQ0Q20PJ8",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#QC9PGP29L"
+}, {
+  "nome" : "VORNIC3",
+  "tag" : "#2GPU990GL",
+  "telefone" : "+351 962 225 421",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "LUKAS444",
+  "tag" : "#PGVQLQUPJ",
+  "telefone" : "#8GGGR8V2L",
+  "principal" : false,
+  "contaPrincipal" : "#902C0L00Q"
+}, {
+  "nome" : "ITALOMARTN",
+  "tag" : "#QVV9L2RVC",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#28GGULVYL"
+}, {
+  "nome" : "AK0800",
+  "tag" : "#QC9PGP29L",
+  "telefone" : "+55 88 9346-9185",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "UNICORNIO",
+  "tag" : "#89CY2GY0L",
+  "telefone" : "+55 11 97796-5678",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "HAZZARD",
+  "tag" : "#YURL80RRU",
+  "telefone" : "tipoConta35",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "EDFEL13",
+  "tag" : "#LJCVVYCP0",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#9R8GPU2U2"
+}, {
+  "nome" : "RUSHTH12",
+  "tag" : "#G00GVVR2Q",
+  "telefone" : "secundaria",
+  "principal" : true,
+  "contaPrincipal" : "#28GGULVYL"
+}, {
+  "nome" : "NOEL",
+  "tag" : "#LUG0Y2VLP",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#902C0L00Q"
+}, {
+  "nome" : "EDY",
+  "tag" : "#92LP20Y8",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#2YQ98V8PJ"
+}, {
+  "nome" : "NOEL2",
+  "tag" : "#QYUQPP2JC",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#902C0L00Q"
+}, {
+  "nome" : "MIGUELJACOB",
+  "tag" : "#L9P0QR2C",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#V9QGLP0C"
+}, {
+  "nome" : "AMANDA",
+  "tag" : "#QV80U0VQ9",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#902C0L00Q"
+}, {
+  "nome" : "SKULLRAIDS009",
+  "tag" : "#QV2009CVL",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "HAUSSER2",
+  "tag" : "#GPLPG8QVC",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#QV0LYGG8Q"
+}, {
+  "nome" : "ALYSSON",
+  "tag" : "#V9QGLP0C",
+  "telefone" : "+43 9617-6321",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "BASARATOUJO",
+  "tag" : "#28GGULVYL",
+  "telefone" : "+11 98923-6569",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "SRYAN",
+  "tag" : "#QGG8V0YL",
+  "telefone" : "+91 8996-2884",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "INGRIDOKABE",
+  "tag" : "#Q2YYJQRUY",
+  "telefone" : "+55 18 99628-9012",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "GUILHERME",
+  "tag" : "#80PL2L98U",
+  "telefone" : "+55 91 8255-6046",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "NONAME",
+  "tag" : "#9P8VJPR0J",
+  "telefone" : "+55 11 94345-1525",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "LUCASBEH",
+  "tag" : "#Y8RCLG92",
+  "telefone" : "+55 24 99273-8985",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "JV1223",
+  "tag" : "#Q0GJ2GPRC",
+  "telefone" : "+55 21 96945-6641",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "CHION",
+  "tag" : "#QU9QQURLG",
+  "telefone" : "+55 82 8159-9651",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "JOHNCLASH",
+  "tag" : "#98UPVJ9GJ",
+  "telefone" : "+81 9658-8343",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "BACONZITA",
+  "tag" : "#LURV2PRJJ",
+  "telefone" : "+55 22 99778-5924",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "RATOGALATICO",
+  "tag" : "#YQ20L2PQL",
+  "telefone" : "+55 65 9255-2551",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "JOELJUNIOR",
+  "tag" : "#G90LVQ0CQ",
+  "telefone" : "+55 22 99932-3727",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "MARCOSDIAS7",
+  "tag" : "#Q899VG8JQ",
+  "telefone" : "+55 91 9323-1968",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "FZN",
+  "tag" : "#QRLQV9JQC",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q899VG8JQ"
+}, {
+  "nome" : "MBISON",
+  "tag" : "#Q28JY2C2",
+  "telefone" : "+55 19 99441-4268",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "MILENA",
+  "tag" : "#LU9U8C9G0",
+  "telefone" : "+55 18 99711-3031",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "CHION22",
+  "tag" : "#QUL9U9JCJ",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#QU9QQURLG"
+}, {
+  "nome" : "SKULLRAIDS012",
+  "tag" : "#QVUG2CQP9",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS014",
+  "tag" : "#QV2998LUJ",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS003",
+  "tag" : "#QCVY899QL",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS004",
+  "tag" : "#QR90V2RLR",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS025",
+  "tag" : "#LPP89828G",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS016",
+  "tag" : "#LQC8C8R0V",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS005",
+  "tag" : "#QYLYQLG80",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS007",
+  "tag" : "#QVL88U88Y",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS017",
+  "tag" : "#QURLVQ220",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS018",
+  "tag" : "#QVYP9V2RQ",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS008",
+  "tag" : "#QUR90L9CV",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS006",
+  "tag" : "#QRR8RGJJP",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS013",
+  "tag" : "#G2QCP89LG",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS010",
+  "tag" : "#QV99ULP29",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS011",
+  "tag" : "#G000JGLPU",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS020",
+  "tag" : "#QVGQR8Q92",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS022",
+  "tag" : "#G2YPGJLCG",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS023",
+  "tag" : "#G9VUVV9QC",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS021",
+  "tag" : "#GPQU8U9VR",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "SKULLRAIDS024",
+  "tag" : "#G9RULVV92",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "PKAIDOUX",
+  "tag" : "#QCU0CVQ9Y",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#YGGVQ9R2"
+}, {
+  "nome" : "YANZITO",
+  "tag" : "#PRCYRP8CP",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#QGG8V0YL"
+}, {
+  "nome" : "CABECAO",
+  "tag" : ",#VUYU2J0P",
+  "telefone" : "+55 11 99999-9999",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "DETONARALF",
+  "tag" : "#88CG8RPVU",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "DETONARALF2",
+  "tag" : "#8RRQLJQJP",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "RAFAEL",
+  "tag" : "#2LR2RUL9U",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "SRDAGUERRA",
+  "tag" : "#LRRPVGRCP",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "KEN",
+  "tag" : "#2VJYL828Q",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "GUILE",
+  "tag" : "#2VU22VPL9",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "KINGJHONEBR",
+  "tag" : "#8LQC9YV0V",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "REINOESCONDIDO",
+  "tag" : "#82VPLR0PP",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "BADBOY",
+  "tag" : "#LU8CGR29R",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "RYU",
+  "tag" : "#P9PCYQ88J",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "BLANKA",
+  "tag" : "#92G22RJCC",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "KINGJHONE2",
+  "tag" : "#YU2URJ9RU",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#Q28JY2C2"
+}, {
+  "nome" : "GILGAMESH",
+  "tag" : "#P2RL8C0YJ",
+  "telefone" : "+55 17 99788-4105",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "ANDREWXD",
+  "tag" : "#L2U8RP0GL",
+  "telefone" : "+55 87 9195-0340",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "LORD",
+  "tag" : "#QC8PQQP9U",
+  "telefone" : "+33 7 83 14 01 81",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "RUSSO",
+  "tag" : "#QJR82QR9J",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#QC8PQQP9U"
+}, {
+  "nome" : "KONG",
+  "tag" : "#8290UC8J",
+  "telefone" : "+55 11 97097-1187",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "GOLDDRAGONFORCE",
+  "tag" : "#28QLJ0VG2",
+  "telefone" : "+55 19 99180-0187",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "KING",
+  "tag" : "#L9JYCJUV9",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#902C0L00Q"
+}, {
+  "nome" : "MINATO",
+  "tag" : "#QV098PYYR",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#902C0L00Q"
+}, {
+  "nome" : "REGISCOC",
+  "tag" : "#8UGLCY82Q",
+  "telefone" : "+55 94 8123-7753",
+  "principal" : true,
+  "contaPrincipal" : ""
+}, {
+  "nome" : "PIRLO21",
+  "tag" : "#8L998QC2P",
+  "telefone" : "secundaria",
+  "principal" : false,
+  "contaPrincipal" : "#8UGLCY82Q"
+} ]

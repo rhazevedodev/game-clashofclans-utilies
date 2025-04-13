@@ -1,0 +1,23 @@
+[
+  {
+    "nome": "SKULL",
+    "tag": "#YGGVQ9R2",
+    "telefone": "+55 21 98656-6485",
+    "principal": true,
+    "contaPrincipal": ""
+  },
+  {
+    "nome": "SKULLRAIDS001",
+    "tag": "#QCYUU9QJ2",
+    "telefone": "",
+    "principal": false,
+    "contaPrincipal": "#YGGVQ9R2"
+  },
+  {
+    "nome": "SKULLRAIDS002",
+    "tag": "#22RYUCVL8",
+    "telefone": "",
+    "principal": false,
+    "contaPrincipal": "#YGGVQ9R2"
+  }
+]
