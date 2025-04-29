@@ -73,12 +73,26 @@ public class MembersService {
 //                .filter(membro -> !"true".equalsIgnoreCase(mapaContas.get(membro.getTag().toUpperCase()).getContaPrincipal()))
 //                .toList();
 
+
+        // 3.1 Separar os membros conhecidos e desconhecidos
         for (MemberDTO membro : list.getMembers()) {
             String tag = membro.getTag().toUpperCase();
             if (mapaContas.containsKey(tag)) {
                 conhecidos.add(membro);
             } else {
                 desconhecidos.add(membro);
+            }
+        }
+
+        // 3.2 Separar os membros secundários
+
+        // Aqui você precisa acessar o Enum - vamos criar um método utilitário pra isso:
+        for (Iterator<MemberDTO> iterator = conhecidos.iterator(); iterator.hasNext(); ) {
+            MemberDTO membro = iterator.next();
+            ContaEnum contaInfo = ContaEnum.getEnumByTag(membro.getTag()); // vamos fazer esse método
+            if (contaInfo != null && !contaInfo.isContaPrincipal()) {
+                secundarias.add(membro);
+                iterator.remove();
             }
         }
 
@@ -238,11 +252,13 @@ public class MembersService {
             // Cabeçalho
             Row header = sheet.createRow(0);
             header.createCell(0).setCellValue("Tag");
-            header.createCell(1).setCellValue("Membro");
-            header.createCell(2).setCellValue("Tag");
-            header.createCell(3).setCellValue("Membro");
-            header.createCell(4).setCellValue("Tag");
-            header.createCell(5).setCellValue("Membro");
+            header.createCell(1).setCellValue("Principal");
+            header.createCell(2).setCellValue("");
+            header.createCell(3).setCellValue("Tag");
+            header.createCell(4).setCellValue("Secundaria");
+            header.createCell(5).setCellValue("");
+            header.createCell(6).setCellValue("Tag");
+            header.createCell(7).setCellValue("Desconhecido");
 
             int max = Math.max(principais.size(), Math.max(secundarias.size(), desconhecidos.size()));
             for (int i = 0; i < max; i++) {
@@ -254,18 +270,18 @@ public class MembersService {
                 }
                 if (i < secundarias.size()) {
                     MemberDTO m = secundarias.get(i);
-                    row.createCell(2).setCellValue(m.getTag());
-                    row.createCell(3).setCellValue(m.getName());
+                    row.createCell(3).setCellValue(m.getTag());
+                    row.createCell(4).setCellValue(m.getName());
                 }
                 if (i < desconhecidos.size()) {
                     MemberDTO m = desconhecidos.get(i);
-                    row.createCell(4).setCellValue(m.getTag());
-                    row.createCell(5).setCellValue(m.getName());
+                    row.createCell(6).setCellValue(m.getTag());
+                    row.createCell(7).setCellValue(m.getName());
                 }
             }
 
             // Autoajuste de colunas
-            for (int i = 0; i <= 5; i++) {
+            for (int i = 0; i <= 7; i++) {
                 sheet.autoSizeColumn(i);
             }
 
