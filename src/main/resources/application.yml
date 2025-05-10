@@ -6,4 +6,6 @@ clashofclans:
     clan-capital-raid-seasons: "https://api.clashofclans.com/v1/clans/tag/capitalraidseasons"
     clan-members: "https://api.clashofclans.com/v1/clans/tag/members"
     clan: "https://api.clashofclans.com/v1/clans/"
+    clan-war-league-group: "https://api.clashofclans.com/v1/clans/tag/currentwar/leaguegroup"
+    clan-wars-league: "https://api.clashofclans.com/v1/clanwarleagues/wars/tag"
 
