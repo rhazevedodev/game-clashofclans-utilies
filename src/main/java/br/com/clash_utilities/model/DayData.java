@@ -2,9 +2,9 @@ package br.com.clash_utilities.model;
 
 public class DayData {
     private int attackStars;
-    private int defenseStars;
+    private double defenseStars;
 
-    public DayData(int attackStars, int defenseStars) {
+    public DayData(int attackStars, double defenseStars) {
         this.attackStars = attackStars;
         this.defenseStars = defenseStars;
     }
@@ -18,11 +18,11 @@ public class DayData {
         this.attackStars = attackStars;
     }
 
-    public int getDefenseStars() {
+    public double getDefenseStars() {
         return defenseStars;
     }
 
-    public void setDefenseStars(int defenseStars) {
+    public void setDefenseStars(double defenseStars) {
         this.defenseStars = defenseStars;
     }
 }

@@ -1,8 +1,10 @@
 package br.com.clash_utilities.controller;
 
 import br.com.clash_utilities.model.*;
+import br.com.clash_utilities.model.enums.Clans;
 import br.com.clash_utilities.service.ClanWarLeagueService;
 import br.com.clash_utilities.utils.ExcelGenerator;
+import br.com.clash_utilities.utils.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -37,7 +40,7 @@ public class ClanWarLeagueController {
         try {//, , "%232QCVR0P2R","%232YJRLYYCC",
             //2320P292C8Y infinitos
             //232YJRLYYCC natividade
-            List<String> tags = Arrays.asList("%2320P292C8Y");
+            List<String> tags = Arrays.asList("%232YJRLYYCC");
             List<String> filePaths = new ArrayList<>();
             for (String tag : tags) {
                 File excelFile = clanWarLeagueService.exportExcelFileAllSevenDaysOfLeague(tag);
@@ -65,6 +68,33 @@ public class ClanWarLeagueController {
 //                System.out.println("Excel file exported to: " + excelFile.getAbsolutePath());
 //            }
 //            return filePaths;
+
+            String tag = "%2320P292C8Y"; //INFINITOS?
+//            String tag = "%232YJRLYYCC"; //NATIVIDADE
+            String meuCla = "INFINITOS";
+//            String meuCla = "NATIVIDADE_BR";
+
+            ClanWarLeagueWarRegistry warRegistry1 = fetchClanWarLeagueWarRegistry(tag, 1);
+            exportWarRegistryToJson(warRegistry1, "warRegistry1.json");
+
+            ClanWarLeagueWarRegistry warRegistry2 = fetchClanWarLeagueWarRegistry(tag, 2);
+            exportWarRegistryToJson(warRegistry2, "warRegistry2.json");
+
+            ClanWarLeagueWarRegistry warRegistry3 = fetchClanWarLeagueWarRegistry(tag, 3);
+            exportWarRegistryToJson(warRegistry3, "warRegistry3.json");
+
+            ClanWarLeagueWarRegistry warRegistry4 = fetchClanWarLeagueWarRegistry(tag, 4);
+            exportWarRegistryToJson(warRegistry4, "warRegistry4.json");
+
+            ClanWarLeagueWarRegistry warRegistry5 = fetchClanWarLeagueWarRegistry(tag, 5);
+            exportWarRegistryToJson(warRegistry5, "warRegistry5.json");
+
+            ClanWarLeagueWarRegistry warRegistry6 = fetchClanWarLeagueWarRegistry(tag, 6);
+            exportWarRegistryToJson(warRegistry6, "warRegistry6.json");
+
+            ClanWarLeagueWarRegistry warRegistry7 = fetchClanWarLeagueWarRegistry(tag, 7);
+            exportWarRegistryToJson(warRegistry7, "warRegistry7.json");
+
             ClanWarLeagueWarRegistry registroDia1 = lerRegistroDia1();
             ClanWarLeagueWarRegistry registroDia2 = lerRegistroDia2();
             ClanWarLeagueWarRegistry registroDia3 = lerRegistroDia3();
@@ -72,8 +102,6 @@ public class ClanWarLeagueController {
             ClanWarLeagueWarRegistry registroDia5 = lerRegistroDia5();
             ClanWarLeagueWarRegistry registroDia6 = lerRegistroDia6();
             ClanWarLeagueWarRegistry registroDia7 = lerRegistroDia7();
-
-            String meuCla = "INFINITOS";
 
             ClanWarLeagueWarClan meuClan1 = registroDia1.clan().name().equals(meuCla) ? registroDia1.clan() : registroDia1.opponent();
             ClanWarLeagueWarClan meuClan2 = registroDia2.clan().name().equals(meuCla) ? registroDia2.clan() : registroDia2.opponent();
@@ -104,21 +132,19 @@ public class ClanWarLeagueController {
             System.out.println("Unique members: " + uniqueTags);
 
             List<PlayerData> playerDataList = new ArrayList<>();
-            for (String tag : uniqueTags) {
+            for (String tags : uniqueTags) {
                 Map<Integer, DayData> warData = new HashMap<>();
                 String name = null;
-                int mapPosition = 0;
 
                 for (int day = 0; day < allDaysMembers.size(); day++) {
                     for (ClanWarLeagueWarMembers member : allDaysMembers.get(day)) {
-                        if (member.tag().equals(tag)) {
+                        if (member.tag().equals(tags)) { // Corrigido para usar "tags"
                             name = member.name();
-                            mapPosition = member.mapPosition();
                             int attackStars = member.attacks() != null && !member.attacks().isEmpty()
                                     ? member.attacks().get(0).stars() // Pega os attackStars do primeiro ataque
                                     : 0;
-                            int defenseStars = member.bestOpponentAttack() != null
-                                    ? 3 - member.bestOpponentAttack().stars()
+                            double defenseStars = member.bestOpponentAttack() != null
+                                    ? ((3 - member.bestOpponentAttack().stars()) * 0.5)
                                     : 1;
                             warData.put(day + 1, new DayData(attackStars, defenseStars));
                         }
@@ -126,13 +152,13 @@ public class ClanWarLeagueController {
                 }
 
                 if (name != null) {
-                    playerDataList.add(new PlayerData(tag, name, mapPosition, warData));
+                    playerDataList.add(new PlayerData(tags, name, warData));
                 }
             }
 
             String filePath = "C:\\Users\\rafae\\Documents\\PlayerData.xlsx";
 
-            Collections.sort(playerDataList, Comparator.comparingInt(PlayerData::getTotalStars).reversed());
+            Collections.sort(playerDataList, Comparator.comparingDouble(PlayerData::getTotalStars).reversed());
 
             ExcelGenerator excelGenerator = new ExcelGenerator();
             excelGenerator.generatePlayerDataExcel(playerDataList, filePath);
@@ -233,4 +259,78 @@ public class ClanWarLeagueController {
             throw new RuntimeException("Arquivo não encontrado: " + filePath);
         }
     }
+
+    private File exportWarRegistryToJson(ClanWarLeagueWarRegistry warRegistry, String fileName) throws IOException {
+        if (warRegistry != null) {
+            File outputDir = new File(System.getProperty("java.io.tmpdir"), "generatedJsons");
+            if (!outputDir.exists()) {
+                outputDir.mkdirs();
+            }
+
+            File outputFile = new File(outputDir, fileName);
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writeValue(outputFile, warRegistry);
+
+            System.out.println("JSON exportado para: " + outputFile.getAbsolutePath());
+            return outputFile;
+        } else {
+            System.out.println("WarRegistry é nulo, não será exportado: " + fileName);
+            return null;
+        }
+    }
+
+    private ClanWarLeagueWarRegistry fetchClanWarLeagueWarRegistry(String tag, int dia) throws Exception {
+        // Busca os dados do grupo de guerras
+        ClanWarLeagueGroup clanWarLeagueGroup = fetchClanWarLeagueData(tag);
+        List<String> tags = clanWarLeagueGroup.rounds().get(dia - 1).warTags();
+//        System.out.println(tags);
+
+        HttpClient client = HttpClient.newHttpClient();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        for (String tagHere : tags) {
+            String encodedTag = tagHere.replace("#", "%23");
+            String url = apiClanWarsLeague.replace("tag", encodedTag);
+
+            HttpRequest request = HttpUtil.createRequest(url, bearerToken);
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200) {
+                String responseBody = response.body();
+                // Verifica se o conteúdo contém "NATIVIDADE"
+                for (Clans clan : Clans.values()) {
+                    if (responseBody.contains(clan.name())) {
+                        return objectMapper.readValue(responseBody, ClanWarLeagueWarRegistry.class);
+                    }
+                }
+            } else {
+                System.out.println("Erro: " + response.statusCode() + " - " + response.body());
+            }
+        }
+
+        // Caso não encontre o conteúdo desejado
+        return null;
+    }
+
+    private ClanWarLeagueGroup fetchClanWarLeagueData(String tag) throws Exception {
+        String encodedTag = tag.replace("#", "%23");
+        String url = apiWarLeagueGroup.replace("tag", encodedTag);
+
+        // Use HttpUtil to create the HttpRequest
+        HttpRequest request = HttpUtil.createRequest(url, bearerToken);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == 200) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(response.body(), ClanWarLeagueGroup.class);
+        }
+        if (response.statusCode() == 404) {
+            throw new RuntimeException("Não foi encontrado uma liga de guerras para o clã informado.");
+        }
+        return null;
+    }
+
 }
