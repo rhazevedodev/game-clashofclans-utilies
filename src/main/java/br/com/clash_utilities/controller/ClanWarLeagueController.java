@@ -69,10 +69,10 @@ public class ClanWarLeagueController {
 //            }
 //            return filePaths;
 
-            String tag = "%2320P292C8Y"; //INFINITOS?
-//            String tag = "%232YJRLYYCC"; //NATIVIDADE
-            String meuCla = "INFINITOS";
-//            String meuCla = "NATIVIDADE_BR";
+//            String tag = "%2320P292C8Y"; //INFINITOS?
+            String tag = "%232YJRLYYCC"; //NATIVIDADE
+//            String meuCla = "INFINITOS";
+            String meuCla = "NATIVIDADE_BR";
 
             ClanWarLeagueWarRegistry warRegistry1 = fetchClanWarLeagueWarRegistry(tag, 1);
             exportWarRegistryToJson(warRegistry1, "warRegistry1.json");
@@ -145,7 +145,7 @@ public class ClanWarLeagueController {
                                     : 0;
                             double defenseStars = member.bestOpponentAttack() != null
                                     ? ((3 - member.bestOpponentAttack().stars()) * 0.5)
-                                    : 1;
+                                    : 0.5;
                             warData.put(day + 1, new DayData(attackStars, defenseStars));
                         }
                     }
