@@ -3,6 +3,7 @@ package br.com.clash_utilities.controller;
 import br.com.clash_utilities.model.*;
 import br.com.clash_utilities.model.enums.Clans;
 import br.com.clash_utilities.service.ClanWarLeagueService;
+import br.com.clash_utilities.service.ClanWarLeagueServiceV2;
 import br.com.clash_utilities.utils.ExcelGenerator;
 import br.com.clash_utilities.utils.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,6 +26,9 @@ public class ClanWarLeagueController {
 
     @Autowired
     private ClanWarLeagueService clanWarLeagueService;
+
+    @Autowired
+    private ClanWarLeagueServiceV2 clanWarLeagueServiceV2;
 
     @Value("${clashofclans.endpoints.clan-war-league-group}")
     private String apiWarLeagueGroup;
@@ -51,6 +55,11 @@ public class ClanWarLeagueController {
         } catch (Exception e) {
             throw new RuntimeException("Error exporting Clan War League data", e);
         }
+    }
+
+    @GetMapping("/v3/exportLeagueFile")
+    public void exportLeagueFileV3() {
+        clanWarLeagueServiceV2.exportLeagueFile();
     }
 
     @GetMapping("/v2/exportLeagueFile")
