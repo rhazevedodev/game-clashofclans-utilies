@@ -29,6 +29,9 @@ public class ClanWarLeagueServiceV2 {
     @Value("${clashofclans.api.bearer-token}")
     private String bearerToken;
 
+    private Set<String> uniqueMembersInfinitos = new HashSet<>();
+    private Set<String> uniqueMembersNatividade = new HashSet<>();
+
     public void exportLeagueFile() {
         System.out.println("Iniciando exportação do arquivo da liga de guerras...");
         try {
@@ -45,9 +48,11 @@ public class ClanWarLeagueServiceV2 {
                 List<ClanWarLeagueWarRegistry> registros = lerRegistrosDeGuerra();
                 List<ClanWarLeagueWarClan> clans = lerClansDaLiga(nomeCla, registros);
                 List<List<ClanWarLeagueWarMembers>> lerMembrosDaLiga = lerMembrosDaLiga(clans);
-                Set<String> uniqueTags = obterTagsUnicas(lerMembrosDaLiga);
+                Set<String> uniqueTags = obterTagsUnicas(lerMembrosDaLiga,nomeCla);
                 System.out.println("Total de membros na liga: " + uniqueTags.size());
                 System.out.println("Membros únicos na liga: " + uniqueTags);
+                System.out.println("Nomes únicos na liga (Natividade): " + uniqueMembersNatividade);
+                System.out.println("Nomes únicos na liga (Infinitos): " + uniqueMembersInfinitos);
                 List<PlayerData> playerDataList = organizarDadosDosJogadores(uniqueTags, lerMembrosDaLiga);
 
                 String filePath = "C:\\Users\\rafae\\Documents\\" + nomeCla + "_" + ano + nomeMes + ".xlsx";
@@ -90,16 +95,26 @@ public class ClanWarLeagueServiceV2 {
                 playerDataList.add(new PlayerData(tags, name, warData));
             }
         }
-        Collections.sort(playerDataList, Comparator.comparingDouble(PlayerData::getTotalStars).reversed());
+        Collections.sort(
+                playerDataList,
+                Comparator.comparingDouble(PlayerData::getTotalStars).reversed()
+                        .thenComparing(Comparator.comparingInt(PlayerData::getTotalAttackStars).reversed())
+                        .thenComparing(Comparator.comparingDouble(PlayerData::getTotalDefenseStars).reversed())
+        );
         return playerDataList;
     }
 
-    private Set<String> obterTagsUnicas(List<List<ClanWarLeagueWarMembers>> lerMembrosDaLiga){
+    private Set<String> obterTagsUnicas(List<List<ClanWarLeagueWarMembers>> lerMembrosDaLiga, String nomeCla){
         System.out.println("Obtendo tags únicas dos membros da liga...");
         Set<String> uniqueTags = new HashSet<>();
         for (List<ClanWarLeagueWarMembers> dayMembers : lerMembrosDaLiga) {
             for (ClanWarLeagueWarMembers member : dayMembers) {
                 uniqueTags.add(member.tag());
+                if(nomeCla.equals(ClanInfo.NATIVIDADE_BR.getNome())) {
+                    uniqueMembersNatividade.add(member.name());
+                } else if (nomeCla.equals(ClanInfo.INFINITOS.getNome())) {
+                    uniqueMembersInfinitos.add(member.name());
+                }
             }
         }
         return uniqueTags;

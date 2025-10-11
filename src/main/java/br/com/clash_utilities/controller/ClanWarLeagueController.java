@@ -167,7 +167,12 @@ public class ClanWarLeagueController {
 
             String filePath = "C:\\Users\\rafae\\Documents\\PlayerData.xlsx";
 
-            Collections.sort(playerDataList, Comparator.comparingDouble(PlayerData::getTotalStars).reversed());
+            Collections.sort(
+                playerDataList,
+                Comparator.comparingDouble(PlayerData::getTotalStars).reversed()
+                    .thenComparing(Comparator.comparingInt(PlayerData::getTotalAttackStars).reversed())
+                    .thenComparing(Comparator.comparingDouble(PlayerData::getTotalDefenseStars).reversed())
+            );
 
             ExcelGenerator excelGenerator = new ExcelGenerator();
             excelGenerator.generatePlayerDataExcel(playerDataList, filePath);

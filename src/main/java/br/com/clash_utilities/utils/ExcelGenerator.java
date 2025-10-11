@@ -18,10 +18,20 @@ public class ExcelGenerator {
             CellStyle headerStyle = workbook.createCellStyle();
             headerStyle.setAlignment(HorizontalAlignment.CENTER);
             headerStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+            headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
-            CellStyle valueStyle = workbook.createCellStyle();
-            valueStyle.setAlignment(HorizontalAlignment.CENTER);
-            valueStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+            CellStyle valueStyleWhite = workbook.createCellStyle();
+            valueStyleWhite.setAlignment(HorizontalAlignment.CENTER);
+            valueStyleWhite.setVerticalAlignment(VerticalAlignment.CENTER);
+            valueStyleWhite.setFillForegroundColor(IndexedColors.WHITE.getIndex());
+            valueStyleWhite.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+            CellStyle valueStyleGray = workbook.createCellStyle();
+            valueStyleGray.setAlignment(HorizontalAlignment.CENTER);
+            valueStyleGray.setVerticalAlignment(VerticalAlignment.CENTER);
+            valueStyleGray.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            valueStyleGray.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
             // Criação da linha de cabeçalho superior com "Guerra 1", "Guerra 2", etc.
             Row warHeaderRow = sheet.createRow(0);
@@ -48,11 +58,15 @@ public class ExcelGenerator {
             // Preenchimento dos dados
             int rowNum = 2; // Começa na terceira linha
             for (PlayerData player : playerDataList) {
-                Row row = sheet.createRow(rowNum++);
-                row.createCell(0).setCellValue(player.getTag());
-                row.createCell(1).setCellValue(player.getName());
+                Row row = sheet.createRow(rowNum);
+                // Alterna o estilo de cor conforme a linha
+                CellStyle valueStyle = (rowNum % 2 == 0) ? valueStyleWhite : valueStyleGray;
 
-                // Preenchendo os valores de ataque e defesa com estilo centralizado
+                row.createCell(0).setCellValue(player.getTag());
+                row.getCell(0).setCellStyle(valueStyle);
+                row.createCell(1).setCellValue(player.getName());
+                row.getCell(1).setCellStyle(valueStyle);
+
                 Cell attackCell1 = row.createCell(2);
                 attackCell1.setCellValue(player.getWar1().getAttackStars());
                 attackCell1.setCellStyle(valueStyle);
@@ -109,7 +123,6 @@ public class ExcelGenerator {
                 defenseCell7.setCellValue(player.getWar7().getDefenseStars());
                 defenseCell7.setCellStyle(valueStyle);
 
-                // Preenchendo os valores totais com estilo centralizado
                 Cell totalAttackStarsCell = row.createCell(16);
                 totalAttackStarsCell.setCellValue(player.getTotalAttackStars());
                 totalAttackStarsCell.setCellStyle(valueStyle);
@@ -121,6 +134,8 @@ public class ExcelGenerator {
                 Cell totalStarsCell = row.createCell(18);
                 totalStarsCell.setCellValue(player.getTotalStars());
                 totalStarsCell.setCellStyle(valueStyle);
+
+                rowNum++;
             }
 
             // Ajusta automaticamente o tamanho das colunas
