@@ -1,6 +1,6 @@
 # Exemplo de configuração de Clans externa
 attackStarsWeight: 1.0
-defenseStarsWeight: 0.5
+defenseStarsWeight: 1.0
 config:
   path: file:///C:/Users/rafae/Desktop/Projetos/outros/game-clashofclans-utilies/clans.yml
 clans:
@@ -14,3 +14,21 @@ clans:
     tag: "%23xxxxx"
   - nome: Joy Division II
     tag: "%232LLGGC089"
+  - nome: Joy Division 3
+    tag: "%232J928R8LU"
+  - nome: Joy Division 4
+    tag: "%232RJRQ2LCG"
+  - nome: Joy Division 5
+    tag: "%232GCQ9Y9QY"
+  - nome: Joy Division 7
+    tag: "%232J9YGJYCL"
+  - nome: Joy Division 6
+    tag: "%232RQVGV9R2"
+  - nome: DOOM HAMMERS
+    tag: "%239CGG20U0"
+  - nome: Divisão 11
+    tag: "%23YUPUYPC9"
+  - nome: Divisão 12 liga
+    tag: "%232J0V2G9JY"
+  - nome: BD FIGHTER
+    tag: "%23GQGGVGRR"

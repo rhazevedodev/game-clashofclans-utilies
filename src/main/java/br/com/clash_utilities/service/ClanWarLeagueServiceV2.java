@@ -69,7 +69,7 @@ public class ClanWarLeagueServiceV2 {
                 System.out.println("Nomes únicos na liga (Joy): " + uniqueMembersJoy);
                 List<PlayerData> playerDataList = organizarDadosDosJogadores(uniqueTags, lerMembrosDaLiga);
 
-                String filePath = "C:\\Users\\rafae\\Documents\\" + nomeCla + "_" + ano + nomeMes + ".xlsx";
+                String filePath = "C:\\Users\\rafae\\Documents\\clash\\" + nomeCla + "_" + ano + nomeMes + ".xlsx";
                 gerarExcelFile(playerDataList, filePath);
             }
         } catch (Exception ex) {
