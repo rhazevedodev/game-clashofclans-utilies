@@ -1,7 +1,7 @@
 package br.com.clash_utilities.controller;
 
 import br.com.clash_utilities.model.*;
-import br.com.clash_utilities.model.enums.Clans;
+import br.com.clash_utilities.service.ClanConfigService;
 import br.com.clash_utilities.service.ClanWarLeagueService;
 import br.com.clash_utilities.service.ClanWarLeagueServiceV2;
 import br.com.clash_utilities.utils.ExcelGenerator;
@@ -29,6 +29,9 @@ public class ClanWarLeagueController {
 
     @Autowired
     private ClanWarLeagueServiceV2 clanWarLeagueServiceV2;
+
+    @Autowired
+    private ClanConfigService clanConfigService;
 
     @Value("${clashofclans.endpoints.clan-war-league-group}")
     private String apiWarLeagueGroup;
@@ -167,12 +170,7 @@ public class ClanWarLeagueController {
 
             String filePath = "C:\\Users\\rafae\\Documents\\PlayerData.xlsx";
 
-            Collections.sort(
-                playerDataList,
-                Comparator.comparingDouble(PlayerData::getTotalStars).reversed()
-                    .thenComparing(Comparator.comparingInt(PlayerData::getTotalAttackStars).reversed())
-                    .thenComparing(Comparator.comparingDouble(PlayerData::getTotalDefenseStars).reversed())
-            );
+            Collections.sort(playerDataList, Comparator.comparingDouble(PlayerData::getTotalStars).reversed());
 
             ExcelGenerator excelGenerator = new ExcelGenerator();
             excelGenerator.generatePlayerDataExcel(playerDataList, filePath);
@@ -297,23 +295,18 @@ public class ClanWarLeagueController {
         // Busca os dados do grupo de guerras
         ClanWarLeagueGroup clanWarLeagueGroup = fetchClanWarLeagueData(tag);
         List<String> tags = clanWarLeagueGroup.rounds().get(dia - 1).warTags();
-//        System.out.println(tags);
-
         HttpClient client = HttpClient.newHttpClient();
         ObjectMapper objectMapper = new ObjectMapper();
-
         for (String tagHere : tags) {
             String encodedTag = tagHere.replace("#", "%23");
             String url = apiClanWarsLeague.replace("tag", encodedTag);
-
             HttpRequest request = HttpUtil.createRequest(url, bearerToken);
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
             if (response.statusCode() == 200) {
                 String responseBody = response.body();
-                // Verifica se o conteúdo contém "NATIVIDADE"
-                for (Clans clan : Clans.values()) {
-                    if (responseBody.contains(clan.name())) {
+                // Verifica se o conteúdo contém algum nome de clan parametrizado
+                for (Clan clan : clanConfigService.getClans()) {
+                    if (responseBody.contains(clan.getNome())) {
                         return objectMapper.readValue(responseBody, ClanWarLeagueWarRegistry.class);
                     }
                 }
@@ -321,7 +314,6 @@ public class ClanWarLeagueController {
                 System.out.println("Erro: " + response.statusCode() + " - " + response.body());
             }
         }
-
         // Caso não encontre o conteúdo desejado
         return null;
     }

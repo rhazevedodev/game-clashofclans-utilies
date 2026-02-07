@@ -1,8 +1,4 @@
 package br.com.clash_utilities.model.enums;
 
-public enum Clans {
-    NATIVIDADE_BR,
-    NATIVIDADE_RAID,
-    INFINITOS,
-    NATIVIDADE_WAR
-}
+// O enum Clans foi removido. Agora os Clans são carregados dinamicamente de um arquivo externo.
+

@@ -1,12 +1,13 @@
 package br.com.clash_utilities.service;
 
+import br.com.clash_utilities.model.Clan;
 import br.com.clash_utilities.model.ClanWarLeagueGroup;
 import br.com.clash_utilities.model.ClanWarLeagueWarClan;
 import br.com.clash_utilities.model.ClanWarLeagueWarRegistry;
-import br.com.clash_utilities.model.enums.Clans;
 import br.com.clash_utilities.utils.ExcelExporter2;
 import br.com.clash_utilities.utils.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ import java.util.List;
 
 @Service
 public class ClanWarLeagueService {
+
+    @Autowired
+    private ClanConfigService clanConfigService;
 
     @Value("${clashofclans.endpoints.clan-war-league-group}")
     private String apiWarLeagueGroup;
@@ -95,8 +99,8 @@ public class ClanWarLeagueService {
     }
 
     private boolean containsClanName(String clanName) {
-        for (Clans clan : Clans.values()) {
-            if (clanName.contains(clan.name())) {
+        for (Clan clan : clanConfigService.getClans()) {
+            if (clanName.contains(clan.getNome())) {
                 return true;
             }
         }
@@ -143,8 +147,8 @@ public class ClanWarLeagueService {
             if (response.statusCode() == 200) {
                 String responseBody = response.body();
                 // Verifica se o conteúdo contém "NATIVIDADE"
-                for (Clans clan : Clans.values()) {
-                    if (responseBody.contains(clan.name())) {
+                for (Clan clan : clanConfigService.getClans()) {
+                    if (responseBody.contains(clan.getNome())) {
                         return objectMapper.readValue(responseBody, ClanWarLeagueWarRegistry.class);
                     }
                 }

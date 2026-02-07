@@ -1,34 +1,30 @@
 package br.com.clash_utilities.model;
 
-import java.util.List;
+public class Clan {
+    private String nome;
+    private String tag;
 
-public record Clan(
-        WarLeague warLeague,
-        CapitalLeague capitalLeague,
-        List<Member> memberList,
-        String tag,
-        int clanBuilderBasePoints,
-        int clanCapitalPoints,
-        int requiredTrophies,
-        int requiredBuilderBaseTrophies,
-        int requiredTownhallLevel,
-        int warWinStreak,
-        String warFrequency,
-        boolean isFamilyFriendly,
-        boolean isWarLogPublic,
-        ChatLanguage chatLanguage,
-        int warWins,
-        int warTies,
-        int warLosses,
-        int clanPoints,
-        int clanLevel,
-        List<Label> labels,
-        String name,
-        Location location,
-        String type,
-        int members,
-        String description,
-        ClanCapital clanCapital,
-        BadgeUrls badgeUrls
-) {
+    public Clan() {}
+
+    public Clan(String nome, String tag) {
+        this.nome = nome;
+        this.tag = tag;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 }
+

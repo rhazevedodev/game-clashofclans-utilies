@@ -1,10 +1,10 @@
 package br.com.clash_utilities.service;
 
 import br.com.clash_utilities.model.*;
-import br.com.clash_utilities.model.enums.Clans;
 import br.com.clash_utilities.utils.ExcelGenerator;
 import br.com.clash_utilities.utils.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +29,12 @@ public class ClanWarLeagueServiceV2 {
     @Value("${clashofclans.api.bearer-token}")
     private String bearerToken;
 
+    @Autowired
+    private ClanConfigService clanConfigService;
+
     private Set<String> uniqueMembersInfinitos = new HashSet<>();
     private Set<String> uniqueMembersNatividade = new HashSet<>();
+    private Set<String> uniqueMembersJoy = new HashSet<>();
 
     public void exportLeagueFile() {
         System.out.println("Iniciando exportação do arquivo da liga de guerras...");
@@ -39,12 +43,21 @@ public class ClanWarLeagueServiceV2 {
             String nomeMes = hoje.getMonth().getDisplayName(TextStyle.FULL, new Locale("pt", "BR"));
             String ano = String.valueOf(hoje.getYear());
 
-            for (ClanInfo clan : ClanInfo.values()) {
+            for (Clan clan : clanConfigService.getClans()) {
                 String tag = clan.getTag();
                 String nomeCla = clan.getNome();
                 System.out.println("Clã: " + nomeCla + " | Tag: " + tag);
 
-                gerarArquivosDeGuerra(tag);
+                try {
+                    gerarArquivosDeGuerra(tag);
+                } catch (RuntimeException e) {
+                    if (e.getMessage() != null && e.getMessage().contains("Não foi encontrado uma liga de guerras para o clã informado.")) {
+                        System.out.println("[AVISO] " + e.getMessage() + " (Tag: " + tag + ")");
+                        continue; // Pula para o próximo clã
+                    } else {
+                        throw e; // Relança outras exceções
+                    }
+                }
                 List<ClanWarLeagueWarRegistry> registros = lerRegistrosDeGuerra();
                 List<ClanWarLeagueWarClan> clans = lerClansDaLiga(nomeCla, registros);
                 List<List<ClanWarLeagueWarMembers>> lerMembrosDaLiga = lerMembrosDaLiga(clans);
@@ -53,6 +66,7 @@ public class ClanWarLeagueServiceV2 {
                 System.out.println("Membros únicos na liga: " + uniqueTags);
                 System.out.println("Nomes únicos na liga (Natividade): " + uniqueMembersNatividade);
                 System.out.println("Nomes únicos na liga (Infinitos): " + uniqueMembersInfinitos);
+                System.out.println("Nomes únicos na liga (Joy): " + uniqueMembersJoy);
                 List<PlayerData> playerDataList = organizarDadosDosJogadores(uniqueTags, lerMembrosDaLiga);
 
                 String filePath = "C:\\Users\\rafae\\Documents\\" + nomeCla + "_" + ano + nomeMes + ".xlsx";
@@ -72,20 +86,22 @@ public class ClanWarLeagueServiceV2 {
     private List<PlayerData> organizarDadosDosJogadores(Set<String> uniqueTags, List<List<ClanWarLeagueWarMembers>> lerMembrosDaLiga) {
         System.out.println("Organizando dados dos jogadores...");
         List<PlayerData> playerDataList = new ArrayList<>();
+        double attackStarsWeight = clanConfigService.getAttackStarsWeight();
+        double defenseStarsWeight = clanConfigService.getDefenseStarsWeight();
         for (String tags : uniqueTags) {
             Map<Integer, DayData> warData = new HashMap<>();
             String name = null;
 
             for (int day = 0; day < lerMembrosDaLiga.size(); day++) {
                 for (ClanWarLeagueWarMembers member : lerMembrosDaLiga.get(day)) {
-                    if (member.tag().equals(tags)) { // Corrigido para usar "tags"
+                    if (member.tag().equals(tags)) {
                         name = member.name();
                         int attackStars = member.attacks() != null && !member.attacks().isEmpty()
-                                ? member.attacks().get(0).stars() // Pega os attackStars do primeiro ataque
-                                : 0;
+                                ? (int)(member.attacks().get(0).stars() * attackStarsWeight)
+                                : (int)(0 * attackStarsWeight);
                         double defenseStars = member.bestOpponentAttack() != null
-                                ? ((3 - member.bestOpponentAttack().stars()) * 0.5)
-                                : 0.5;
+                                ? ((3 - member.bestOpponentAttack().stars()) * defenseStarsWeight)
+                                : defenseStarsWeight;
                         warData.put(day + 1, new DayData(attackStars, defenseStars));
                     }
                 }
@@ -110,10 +126,12 @@ public class ClanWarLeagueServiceV2 {
         for (List<ClanWarLeagueWarMembers> dayMembers : lerMembrosDaLiga) {
             for (ClanWarLeagueWarMembers member : dayMembers) {
                 uniqueTags.add(member.tag());
-                if(nomeCla.equals(ClanInfo.NATIVIDADE_BR.getNome())) {
+                if(nomeCla.equalsIgnoreCase("NATIVIDADE_BR")) {
                     uniqueMembersNatividade.add(member.name());
-                } else if (nomeCla.equals(ClanInfo.INFINITOS.getNome())) {
+                } else if (nomeCla.equalsIgnoreCase("INFINITOS")) {
                     uniqueMembersInfinitos.add(member.name());
+                } else if (nomeCla.equalsIgnoreCase("Joy Division II")) {
+                    uniqueMembersJoy.add(member.name());
                 }
             }
         }
@@ -147,15 +165,20 @@ public class ClanWarLeagueServiceV2 {
         System.out.println("Lendo registros de guerra...");
         ObjectMapper objectMapper = new ObjectMapper();
         List<ClanWarLeagueWarRegistry> warRegistries = new ArrayList<>();
+        int arquivosEncontrados = 0;
         for (int i = 1; i <= 7; i++) {
             String filePath = "C:\\Users\\rafae\\AppData\\Local\\Temp\\generatedJsons\\warRegistry" + i + ".json";
             File file = new File(filePath);
             if (file.exists()) {
                 ClanWarLeagueWarRegistry registry = objectMapper.readValue(file, ClanWarLeagueWarRegistry.class);
                 warRegistries.add(registry);
+                arquivosEncontrados++;
             } else {
-                throw new RuntimeException("Arquivo não encontrado: " + filePath);
+                System.out.println("Arquivo não encontrado: " + filePath);
             }
+        }
+        if (arquivosEncontrados == 0) {
+            throw new RuntimeException("Nenhum arquivo de registro de guerra foi encontrado.");
         }
         return warRegistries;
     }
@@ -189,8 +212,8 @@ public class ClanWarLeagueServiceV2 {
 
             if (response.statusCode() == 200) {
                 String responseBody = response.body();
-                for (Clans clan : Clans.values()) {
-                    if (responseBody.contains(clan.name())) {
+                for (Clan clan : clanConfigService.getClans()) {
+                    if (responseBody.contains(clan.getNome())) {
                         return objectMapper.readValue(responseBody, ClanWarLeagueWarRegistry.class);
                     }
                 }
@@ -243,25 +266,5 @@ public class ClanWarLeagueServiceV2 {
         return null;
     }
 
-    // Enum interno para nome e tag do clã
-    public enum ClanInfo {
-        NATIVIDADE_BR("NATIVIDADE_BR", "%232YJRLYYCC"),
-        INFINITOS("INFINITOS", "%2320P292C8Y");
 
-        private final String nome;
-        private final String tag;
-
-        ClanInfo(String nome, String tag) {
-            this.nome = nome;
-            this.tag = tag;
-        }
-
-        public String getNome() {
-            return nome;
-        }
-
-        public String getTag() {
-            return tag;
-        }
-    }
 }

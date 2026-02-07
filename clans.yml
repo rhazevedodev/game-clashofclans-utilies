@@ -1,0 +1,16 @@
+# Exemplo de configuração de Clans externa
+attackStarsWeight: 1.0
+defenseStarsWeight: 0.5
+config:
+  path: file:///C:/Users/rafae/Desktop/Projetos/outros/game-clashofclans-utilies/clans.yml
+clans:
+  - nome: NATIVIDADE_BR
+    tag: "%232YJRLYYCC"
+  - nome: NATIVIDADE_RAID
+    tag: "%23xxxxxx"
+  - nome: INFINITOS
+    tag: "%2320P292C8Y"
+  - nome: NATIVIDADE_WAR
+    tag: "%23xxxxx"
+  - nome: Joy Division II
+    tag: "%232LLGGC089"
