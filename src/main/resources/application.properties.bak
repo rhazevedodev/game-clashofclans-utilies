@@ -1,0 +1,8 @@
+# Caminho absoluto para o arquivo de configuração dos Clans
+clans.config.path=file:///C:/Users/rafae/Desktop/Projetos/outros/game-clashofclans-utilies/clans.yml
+
+# Endpoints Clash of Clans (caso precise usar no .properties)
+clashofclans.endpoints.clan-war-league-group=https://api.clashofclans.com/v1/clans/tag/currentwar/leaguegroup
+clashofclans.endpoints.clan-wars-league=https://api.clashofclans.com/v1/clanwarleagues/wars/tag
+clashofclans.api.bearer-token=COLE_AQUI_SEU_TOKEN
+

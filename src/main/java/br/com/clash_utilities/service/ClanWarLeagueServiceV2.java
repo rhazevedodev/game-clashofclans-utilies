@@ -51,7 +51,7 @@ public class ClanWarLeagueServiceV2 {
                 try {
                     gerarArquivosDeGuerra(tag);
                 } catch (RuntimeException e) {
-                    if (e.getMessage() != null && e.getMessage().contains("Não foi encontrado uma liga de guerras para o clã informado.")) {
+                    if (e.getMessage() != null && e.getMessage().contains("Não foi encontrado uma liga de guerras para o clã informado."))  {
                         System.out.println("[AVISO] " + e.getMessage() + " (Tag: " + tag + ")");
                         continue; // Pula para o próximo clã
                     } else {
