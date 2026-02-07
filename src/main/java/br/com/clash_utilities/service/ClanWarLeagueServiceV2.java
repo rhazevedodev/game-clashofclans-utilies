@@ -4,6 +4,8 @@ import br.com.clash_utilities.model.*;
 import br.com.clash_utilities.utils.ExcelGenerator;
 import br.com.clash_utilities.utils.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -43,6 +45,9 @@ public class ClanWarLeagueServiceV2 {
             String nomeMes = hoje.getMonth().getDisplayName(TextStyle.FULL, new Locale("pt", "BR"));
             String ano = String.valueOf(hoje.getYear());
 
+            Workbook workbook = new XSSFWorkbook();
+            String filePath = "C:\\Users\\rafae\\Documents\\clash\\LigaMensal_" + ano + nomeMes + ".xlsx";
+
             for (Clan clan : clanConfigService.getClans()) {
                 String tag = clan.getTag();
                 String nomeCla = clan.getNome();
@@ -69,18 +74,22 @@ public class ClanWarLeagueServiceV2 {
                 System.out.println("Nomes únicos na liga (Joy): " + uniqueMembersJoy);
                 List<PlayerData> playerDataList = organizarDadosDosJogadores(uniqueTags, lerMembrosDaLiga);
 
-                String filePath = "C:\\Users\\rafae\\Documents\\clash\\" + nomeCla + "_" + ano + nomeMes + ".xlsx";
-                gerarExcelFile(playerDataList, filePath);
+                gerarExcelFile(playerDataList, workbook, nomeCla);
             }
+            // Salva o arquivo Excel único
+            try (java.io.FileOutputStream fileOut = new java.io.FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+            System.out.println("Excel mensal gerado com sucesso em: " + filePath);
         } catch (Exception ex) {
             throw new RuntimeException("Erro ao exportar arquivo da liga de guerras: " + ex.getMessage(), ex);
         }
     }
 
-    private void gerarExcelFile(List<PlayerData> playerDataList, String filePath) {
-        System.out.println("Gerando arquivo Excel em: " + filePath);
+    private void gerarExcelFile(List<PlayerData> playerDataList, Workbook workbook, String sheetName) {
+        System.out.println("Gerando aba Excel: " + sheetName);
         ExcelGenerator excelGenerator = new ExcelGenerator();
-        excelGenerator.generatePlayerDataExcel(playerDataList, filePath);
+        excelGenerator.generatePlayerDataExcel(playerDataList, workbook, sheetName);
     }
 
     private List<PlayerData> organizarDadosDosJogadores(Set<String> uniqueTags, List<List<ClanWarLeagueWarMembers>> lerMembrosDaLiga) {

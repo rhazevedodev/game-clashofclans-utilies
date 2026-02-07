@@ -173,7 +173,7 @@ public class ClanWarLeagueController {
             Collections.sort(playerDataList, Comparator.comparingDouble(PlayerData::getTotalStars).reversed());
 
             ExcelGenerator excelGenerator = new ExcelGenerator();
-            excelGenerator.generatePlayerDataExcel(playerDataList, filePath);
+//            excelGenerator.generatePlayerDataExcel(playerDataList, filePath);
 
 //            return lerRegistroDia1();
         } catch (Exception e) {
